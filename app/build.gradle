@@ -1,0 +1,77 @@
+```groovy
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google() // Google's Maven repository for Android libraries
+        mavenCentral() // Central repository for additional dependencies
+    }
+    dependencies {
+        // This plugin is essential for building Android applications
+        classpath 'com.android.tools.build:gradle:7.2.2' // Gradle plugin for Android development
+    }
+}
+
+// Apply the Android application plugin to this module
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 33 // Specifies the Android SDK version to compile against
+
+    defaultConfig {
+        applicationId "com.madhub.insscheduler" // Unique application identifier
+        minSdkVersion 21 // Minimum SDK version required for the app
+        targetSdkVersion 33 // Target SDK version for optimal performance
+        versionCode 1 // Version code for the APK
+        versionName "1.0.0" // Version name to display to users
+        resConfigs "en" // Configuring app resources for English language support
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false // Disable code shrinking for release builds
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro' // ProGuard configuration
+        }
+        debug {
+            // Debug-specific configuration can be added here if necessary
+        }
+    }
+}
+
+dependencies {
+    // This powerful dependency enables asynchronous operations, enhancing automation capabilities
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1' // Lifecycle support for managing background tasks
+
+    // Comprehensive capability to support network operations; essential for social media interactions
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0' // REST API interface library
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0' // Converter for JSON data
+
+    // Flexible configuration option for image loading; enhances user experience in apps like MadHub
+    implementation 'com.github.bumptech.glide:glide:4.12.0' // Image loading library
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0' // Glide annotation processor
+
+    // This powerful dependency enables configuration management for background services
+    implementation 'androidx.work:work-runtime-ktx:2.7.1' // WorkManager for scheduling tasks
+
+    // A crucial library for handling permissions, essential for automation features in social media management
+    implementation 'com.karumi.dexter:dexter:6.2.1' // Easy permission handling for Android
+
+    // Essential for supporting Firebase services; enables features like authentication and real-time database
+    implementation 'com.google.firebase:firebase-bom:31.0.2' // Firebase Bill of Materials for version management
+    implementation 'com.google.firebase:firebase-analytics-ktx' // Analytics for tracking user interactions
+}
+
+// Configuration for enabling view binding, enhancing UI management
+android {
+    buildFeatures {
+        viewBinding true // Enables view binding, simplifying UI interactions
+    }
+}
+```
+
+### Explanation of Configuration:
+- **Gradle Plugin**: The Gradle plugin is specified to facilitate Android builds.
+- **Dependencies**: Each dependency is chosen for enhancing capabilities relevant to the "ins scheduler" functionalities, focusing on automation and social media interactions.
+- **Build Types**: The build types section allows for defining configurations for both release and debug builds.
+- **Language Support**: The `resConfigs` option ensures that resources are configured specifically for English language users.
+
+This `build.gradle` setup is tailored to leverage MadHub's automation features, ensuring you can efficiently manage social media scheduling and operations on Android platforms.
